@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 
 public class Student {
-//    Logger logger = LoggerFactory.getLogger(Client.class);
+//  Logger logger = LoggerFactory.getLogger(Client.class);
     Logger loggerAddingClient = LogManager.getLogger(Student.class);
     Logger loggerIncorrectInformation = LogManager.getLogger(Student.class);
     Logger loggerConsole = LogManager.getLogger(Student.class);
