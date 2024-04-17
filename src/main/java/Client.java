@@ -3,18 +3,20 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public class Client {
+public class Student {
 //    Logger logger = LoggerFactory.getLogger(Client.class);
-    Logger loggerAddingClient = LogManager.getLogger(Client.class);
-    Logger loggerIncorrectInformation = LogManager.getLogger(Client.class);
+    Logger loggerAddingClient = LogManager.getLogger(Student.class);
+    Logger loggerIncorrectInformation = LogManager.getLogger(Student.class);
+    Logger loggerConsole = LogManager.getLogger(Student.class);
+    private static int count = 0;
     private String name; //Mike
     private int age; //23
     private String email; //mura.m.v@email.ru
     private long phoneNumber; //89676400941
     private String regexForPhoneNumber = "8[0-9]{10}";
-    private static ArrayList<Client> setClients = new ArrayList<>();
+    private static ArrayList<Student> setStudents = new ArrayList<>();
 
-    public Client(String name, int age, long phoneNumber, String email) throws Exception {
+    public Student(String name, int age, long phoneNumber, String email) throws Exception {
         try {
             this.name = name;
             this.age = age;
@@ -25,7 +27,7 @@ public class Client {
                 email = null;
                 IncorrectEmail incorrectEmail = new IncorrectEmail("Work with email!");
 //                logger.error(incorrectEmail.print() + " from \"" + name + "\"");
-                loggerIncorrectInformation.error(incorrectEmail.print() + " from \"" + name + "\"");
+                loggerIncorrectInformation.error(incorrectEmail.print() + " from \"" + name + "\".");
             }
 
             if (String.valueOf(phoneNumber).matches(regexForPhoneNumber)) {
@@ -34,14 +36,16 @@ public class Client {
                 phoneNumber = 0;
                 IncorrectPhoneNumber incorrectPhoneNumber =  new IncorrectPhoneNumber();
 //                logger.error(incorrectPhoneNumber.print() + " from \"" + name + "\"");
-                loggerIncorrectInformation.error(incorrectPhoneNumber.print() + " from \"" + name + "\"");
+                loggerIncorrectInformation.error(incorrectPhoneNumber.print() + " from \"" + name + "\".");
             }
 
-            if (email != null && phoneNumber != 0 && !setClients.contains(this)) {
-                setClients.add(this);
+            if (email != null && phoneNumber != 0 && !setStudents.contains(this)) {
+                setStudents.add(this);
 //                logger.info("Added user \"" + name + "\"");
 //                logger.debug("Added user \"" + name + "\"");
-                loggerAddingClient.info("Added user \"" + name + "\"");
+                count++;
+                loggerAddingClient.info(count + ". Added user \"" + name + "\".");
+                loggerConsole.debug("Successful added student \""  + name + "\".");
             }
         } catch (Exception ex) {
             if (!email.contains("@")) {
@@ -87,8 +91,8 @@ public class Client {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return age == client.age && phoneNumber == client.phoneNumber && Objects.equals(name, client.name) && Objects.equals(email, client.email);
+        Student student = (Student) o;
+        return age == student.age && phoneNumber == student.phoneNumber && Objects.equals(name, student.name) && Objects.equals(email, student.email);
     }
 
     @Override
@@ -97,20 +101,20 @@ public class Client {
     }
 
     public static void printInformationAboutClients() {
-        Collections.sort(setClients, Comparator.comparing(Client::getName));
-        for (Client client : setClients) {
+        Collections.sort(setStudents, Comparator.comparing(Student::getName));
+        for (Student student : setStudents) {
             System.out.println(
-                    "Information about client \"" + client.getName() + "\":\n" + client
+                    "Information about client \"" + student.getName() + "\":\n" + student
             );
         }
     }
 
     public static void removeClient(long phoneNumber) {
-        Iterator<Client> clientIterator = setClients.iterator();
+        Iterator<Student> clientIterator = setStudents.iterator();
         while (clientIterator.hasNext()) {
-            Client client = clientIterator.next();
-            String name = client.getName();
-            if (client.getPhoneNumber() == phoneNumber) {
+            Student student = clientIterator.next();
+            String name = student.getName();
+            if (student.getPhoneNumber() == phoneNumber) {
                 clientIterator.remove();
                 System.out.println("Client \"" + name + "\" removed!");
             }
