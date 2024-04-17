@@ -5,6 +5,9 @@
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <ThresholdFilter level="off" onMatch="DENY" onMismatch="NEUTRAL" />
+            </Filters>
         </Console>
 
         <File name="AddingClients" fileName="logs/addingClients.log">
@@ -26,6 +29,7 @@
         <root level="all">
             <appender-ref ref="AddingClients" level="info"/>
             <appender-ref ref="ErrorsFile" level="error"/>
+            <appender-ref ref="Console" level="debug"/>
         </root>
     </loggers>
 
