@@ -2,38 +2,38 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Client clientOne = new Client(
+        Student studentOne = new Student(
                 "Vadim", 32, 89676400941l, "sotnikov.v.v@mail.ru");
 
-        Client clientTwo = new Client(
+        Student studentTwo = new Student(
                 "Alex", 39, 89676400942l, "rybyhin.a.v@mail.ru");
 
-        Client clientThree = new Client(
+        Student studentThree = new Student(
                 "Seva", 30, 89676400943l, "ostrovscki.v.a@mail.ru");
 
-        Client clientFour = new Client(
+        Student studentFour = new Student(
                 "Rad", 14, 89676400944l, "juravlev.r.k@mail.ru");
 
-        Client clientFive = new Client(
+        Student studentFive = new Student(
                 "Sasha", 20, 89676400945l, "karpinskiy.v.v@mail.ru");
 
-        Client clientSix = new Client(
+        Student studentSix = new Student(
                 "Ulyana", 16, 89676400946l, "frolova.u.i@mail.ru");
 
-        Client clientSeven = new Client(
+        Student studentSeven = new Student(
                 "Dima", 17, 89676400947l, "minosyan.d.v@mail.ru");
 
-        Client clientEight = new Client(
-                "Andy", 16, 89676400948l, "grigorov.a.g@mail.ru");
+        Student studentEight = new Student(
+                "Andry", 16, 89676400948l, "grigorov.a.g@mail.ru");
 
-        Client clientNine = new Client(
-                "Andy", 16, 89676400948l, "grigorov.a.g@mail.ru");
+        Student studentNine = new Student(
+                "Andry", 16, 89676400948l, "grigorov.a.g@mail.ru");
 
-        Client clientTen = new Client(
+        Student studentTen = new Student(
                 "Mike", 23, 89676400948l, "muramail.ru");
 
-        Client clientEleven = new Client(
-                "Gregory", 26, 89676400948111111l, "avosin@mail.ru");
+        Student studentEleven = new Student(
+                "Gregory", 26, 896764009481111111l, "avosin@mail.ru");
 
 //        Client clientTwelve = null;
 //        System.out.println(clientTwelve.toString());
@@ -42,11 +42,11 @@ public class Main {
             System.out.println("Input on the console command \"PrintInformationAboutClients\", \"Remove\":");
             String command = new Scanner(System.in).nextLine();
             if (command.equals("PrintInformationAboutClients")) {
-                Client.printInformationAboutClients();
+                Student.printInformationAboutClients();
             } else if (command.equals("Remove")) {
                 System.out.println("Input criterion for remove client: ");
                 long number = new Scanner(System.in).nextLong();
-                Client.removeClient(number);
+                Student.removeClient(number);
             }
         }
     }
